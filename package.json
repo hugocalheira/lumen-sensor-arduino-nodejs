@@ -1,0 +1,14 @@
+{
+  "name": "socket-io",
+  "version": "1.0.0",
+  "main": "app.js",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.1",
+    "serialport": "^10.4.0",
+    "socket.io": "^4.5.0"
+  },
+  "scripts": {
+    "start": "node src/app.js"
+  }
+}

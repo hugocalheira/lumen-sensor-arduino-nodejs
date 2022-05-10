@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lumen Sensor - Arduino and NodeJs</title>
+    <script src="/socket.io/socket.io.js"></script>
+    <style>
+        html, body { height: 100%; }
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+        }
+        #app {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body onclick="toogleLight()">
+    <h1 id="app"></h1>
+    <script>
+        let state
+        const toogleLight = () => {
+            socket.emit('light', !state)
+        }
+        const socket = io()
+        socket.on('dadoArduino', ({lumens, light}) => {
+            const body = document.querySelector('body')
+            const value = document.querySelector('#app')
+
+            const appSet = (property, value) => document.querySelector('#app').style.setProperty(property, value)
+
+            const bodySet = (property, value) => document.querySelector('body').style.setProperty(property, value)
+
+            state = eval(light)
+            value.innerHTML = lumens
+
+            if (eval(light)) {
+                appSet('filter', 'drop-shadow(0px 0px 5px white)')
+            } else {
+                appSet('filter', 'none')
+            }
+
+            if (Number(lumens) < 600) {
+                bodySet('background', '#680000')
+                bodySet('color', '#fff')
+            }
+
+            if (Number(lumens) > 600 && Number(lumens) <= 800) {
+                bodySet('background', '#ffbc00')
+                bodySet('color', '#000')
+            }
+
+            if (Number(lumens) > 800) {
+                bodySet('background', '#006a00')
+                bodySet('color', '#fff')
+            }
+        })
+    </script>
+</body>
+</html>
