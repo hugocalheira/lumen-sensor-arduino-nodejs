@@ -25,8 +25,13 @@ const parser = port.pipe(new ReadlineParser({ delimiter: '\r\n' }))
 
 port.on("open", () => console.log(`Reading port ${path}`))
 parser.on("data", data => {
-    console.log(JSON.parse(data))
-    io.emit('dadoArduino', JSON.parse(data))
+    try {
+        const parsedData = JSON.parse(data)
+        console.log(parsedData)
+        io.emit('dadoArduino', parsedData)
+    } catch (err) {
+        console.log(err.message)
+    }
 })
 
 io.on('connection', socket => {
