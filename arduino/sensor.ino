@@ -26,19 +26,17 @@ void turnOffLeds() {
 
 void processData() {
   lumens = analogRead(sensor);
-   
+  turnOffLeds();
+
   if (lumens > highLimit) {
-    turnOffLeds();
     digitalWrite(highLumens,HIGH);
   }
    
   if (lumens >= mediumLimit && lumens <= highLimit) {
-    turnOffLeds();
     digitalWrite(mediumLumens,HIGH);
   }
  
   if (lumens < mediumLimit) {
-    turnOffLeds();
     digitalWrite(lowLumens,HIGH);
   }
 }
