@@ -25,10 +25,10 @@
     <script>
         let state
         const toogleLight = () => {
-            socket.emit('light', !state)
+            socket.emit('LIGHT', !state)
         }
         const socket = io()
-        socket.on('dadoArduino', ({lumens, light}) => {
+        socket.on('JSON_DATA', ({lumens, light}) => {
             const body = document.querySelector('body')
             const value = document.querySelector('#app')
 

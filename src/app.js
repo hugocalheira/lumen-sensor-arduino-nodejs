@@ -23,28 +23,23 @@ const port = new SerialPort(
 
 const parser = port.pipe(new ReadlineParser({ delimiter: '\r\n' }))
 
-port.on("open", () => console.log(`Reading port ${path}`))
-parser.on("data", data => {
+port.on('open', () => console.log(`Reading port ${path}`))
+parser.on('data', data => {
     try {
-        const parsedData = JSON.parse(data)
-        console.log(parsedData)
-        io.emit('dadoArduino', parsedData)
+        io.emit('JSON_DATA', JSON.parse(data))
     } catch (err) {
         console.log(err.message)
     }
 })
 
 io.on('connection', socket => {
-    console.log('Um usuario está conectado:', socket.id)
+    console.log('New connection:', socket.id)
 
     socket.on('disconnect', () => {
-        console.log('user disconnected');
+        console.log(`Connection ${socket.id} closed`);
     });
 
-    socket.on('light', (data) => {
-        console.log(data.toString())
-        port.write(data.toString())
-    })
+    socket.on('LIGHT', data => port.write(data.toString()))
 })
 
 http.listen(3000, () => console.log('Server listening on port 3000'))
