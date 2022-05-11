@@ -23,9 +23,17 @@
 <body onclick="toogleLight()">
     <h1 id="app"></h1>
     <script>
-        let state
+        const state = { light: false, control: false }
+        const setState = (value) => {
+            if (state.light !== value) {
+                state.light = value
+                state.control = false
+            }
+        }
         const toogleLight = () => {
-            socket.emit('LIGHT', !state)
+            if (state.control) return
+            socket.emit('LIGHT', !state.light)
+            state.control = true
         }
         const socket = io()
         socket.on('JSON_DATA', ({lumens, light}) => {
@@ -36,7 +44,7 @@
 
             const bodySet = (property, value) => document.querySelector('body').style.setProperty(property, value)
 
-            state = eval(light)
+            setState(eval(light))
             value.innerHTML = lumens
 
             if (eval(light)) {
