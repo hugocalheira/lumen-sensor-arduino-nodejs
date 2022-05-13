@@ -1,8 +1,9 @@
-const int sensor = 0;
-const int light = 7;
-const int highLumens = 8;
-const int mediumLumens = 9;
-const int lowLumens = 10;
+#define LDR_SENSOR 0
+#define LIGHT 8
+
+const int highLumens = 9;
+const int mediumLumens = 10;
+const int lowLumens = 11;
 
 const int mediumLimit = 600;
 const int highLimit = 800;
@@ -11,11 +12,11 @@ int lumens = 0;
 String incomingString = "false";
  
 void setup(){
-  Serial.begin(9600);
+  Serial.begin(115200);
   pinMode(highLumens,OUTPUT);
   pinMode(mediumLumens,OUTPUT);
   pinMode(lowLumens,OUTPUT);
-  pinMode(light,OUTPUT);
+  pinMode(LIGHT,OUTPUT);
 }
  
 void turnOffLeds() {
@@ -25,7 +26,7 @@ void turnOffLeds() {
 }
 
 void processData() {
-  lumens = analogRead(sensor);
+  lumens = analogRead(LDR_SENSOR);
   turnOffLeds();
 
   if (lumens > highLimit) {
@@ -44,7 +45,7 @@ void processData() {
 void output() {
   if (Serial.available() > 0) {
     incomingString = Serial.readString();
-    digitalWrite(light, (incomingString == "true") ? HIGH : LOW );
+    digitalWrite(LIGHT, (incomingString == "true") ? HIGH : LOW );
   } 
 
   Serial.println("{\"lumens\":" + (String)lumens + " ,\"light\":"+incomingString+" }");
