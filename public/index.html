@@ -37,6 +37,8 @@
         }
         const socket = io()
         socket.on('JSON_DATA', ({lumens, light}) => {
+            const mediumLimit = 600;
+            const highLimit = 800;
             const body = document.querySelector('body')
             const value = document.querySelector('#app')
 
@@ -53,17 +55,17 @@
                 appSet('filter', 'none')
             }
 
-            if (Number(lumens) < 600) {
+            if (Number(lumens) < mediumLimit) {
                 bodySet('background', '#680000')
                 bodySet('color', '#fff')
             }
 
-            if (Number(lumens) > 600 && Number(lumens) <= 800) {
+            if (Number(lumens) > mediumLimit && Number(lumens) <= highLimit) {
                 bodySet('background', '#ffbc00')
                 bodySet('color', '#000')
             }
 
-            if (Number(lumens) > 800) {
+            if (Number(lumens) > highLimit) {
                 bodySet('background', '#006a00')
                 bodySet('color', '#fff')
             }
