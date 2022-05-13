@@ -17,6 +17,7 @@ Em resumo, podemos ler os dados de luminosidade através de qualquer aparelho na
 ```
 {
     "lumens": number,
+    "status": number,
     "light": boolean
 }
 ```

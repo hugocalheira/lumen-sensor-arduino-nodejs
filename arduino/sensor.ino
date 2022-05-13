@@ -9,6 +9,7 @@ const int mediumLimit = 600;
 const int highLimit = 800;
 
 int lumens = 0;
+int status = 0;
 String incomingString = "false";
  
 void setup(){
@@ -30,14 +31,17 @@ void processData() {
   turnOffLeds();
 
   if (lumens > highLimit) {
+    status = 1;
     digitalWrite(highLumens,HIGH);
   }
    
   if (lumens >= mediumLimit && lumens <= highLimit) {
+    status = 0;
     digitalWrite(mediumLumens,HIGH);
   }
  
   if (lumens < mediumLimit) {
+    status = -1;
     digitalWrite(lowLumens,HIGH);
   }
 }
@@ -48,7 +52,7 @@ void output() {
     digitalWrite(LIGHT, (incomingString == "true") ? HIGH : LOW );
   } 
 
-  Serial.println("{\"lumens\":" + (String)lumens + " ,\"light\":"+incomingString+" }");
+  Serial.println("{\"lumens\":" + (String)lumens + ", \"status\":" + (String)status + ", \"light\":"+incomingString+" }");
 }
  
 void loop(){
