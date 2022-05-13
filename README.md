@@ -2,7 +2,7 @@
 
 Caso de estudo sobre integração de comunicação entre protótipo Arduino UNO R3 (ou hardware compatível) e NodeJs.
 
-![Protótipo utilizando um LED RGB](https://lh3.googleusercontent.com/mjkhKBrdhdE8V5m47sDzY0msHmHXvuRBDihl-1f6s343tfnGSf3sGwW73dsVQu1-z8h3irgaGTVCsc4efEEFQhDwDWf-A438YQSDyRa_SeqNMr9Uw1UcMSZ5ajnCZA6M1G8jSk49nh9HxHQtUesjEb3xer7usuoEYxXAjy8NiuZRxDJqVGuC8STdgtrG4eQ0DiB0NtPEwAB6GNSBBm8DE0H7Z-zSK6z35zFiyTKQw6QU1aOEkIaaUy40TI7sqFtHQEjIR0H0AvHA61Ms-Z5DouDiwrNyNYKQJTXTKywGgTLF6dzwXO4ePlvT9E1202XuMinqXLjlz9T_rp_HpOnMC5S-wPq-PCKwrmDUdNX15vhzVwavK_LvZVgUclG-uFSpUFNEjRwx4Z0Ct85bmfZWp5DYqoHT9f2eSzx1IYehhMgUNkLZgnOm_dBf2Bjuw7SFCU-uNUfQDGtiQa73Gk0lMuoNHL-IKH7CTllU-9_BEK7NBLiL9aP63JkRcbY8UIk0p811RDugmnfg8Rvj1Jbo9gv3Y_tFxzKmRwJncl5Mk7s76iUjXRpAIzBOB7MZUyZ7tb7L-NS5I1omBPGZTop6_oJX60T9bL44Ef-24V4klt90BxPa8hV4-U5fgiGTV74I3IpmlipjSiFaDHUAetZKsgtzrrGFC4Ml0XD2FUL1pA2BnldB98wfgPX4a42oU0LfcSlimuk-kEIYpNwTnvcH6WcnCP_WvoOTMxv9jEaPDiU4Vfo0zsuBL1Na4mtg9HEdZznfW2D5IblRputLf5bj9d2DOfmjOeaJrEkh7A=w1920-h864-no?authuser=0)
+![Protótipo utilizando um LED RGB](https://i.imgur.com/BBvfBvv.png)
 
 O projeto apresenta um sensor de luminosidade, com resposta visual no hardware com três LEDS representativos da intensidade de luz ambiente, classificados como forte, média ou fraca. Em paralelo, os dados capturados pelo sensor é enviado via porta serial (USB) e lidos por um servidor web [Express](https://expressjs.com/pt-br/), ouvindo a porta 3000 e estabelecendo uma conexão *event-based* e de baixa latência com a *library* [Socket.io](https://socket.io/).
 
