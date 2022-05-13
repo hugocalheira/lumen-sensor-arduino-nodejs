@@ -1,9 +1,9 @@
+#define BLUE 9
+#define GREEN 10
+#define RED 11
+
 #define LDR_SENSOR 0
 #define LIGHT 8
-
-const int highLumens = 9;
-const int mediumLumens = 10;
-const int lowLumens = 11;
 
 const int mediumLimit = 600;
 const int highLimit = 800;
@@ -11,38 +11,41 @@ const int highLimit = 800;
 int lumens = 0;
 int status = 0;
 String incomingString = "false";
+
+void rgb(int r, int g, int b) {
+  analogWrite(RED, r);
+  analogWrite(GREEN, g);
+  analogWrite(BLUE, b);
+}
+
+void setupRgb() {
+  pinMode(BLUE,OUTPUT);
+  pinMode(GREEN,OUTPUT);
+  pinMode(RED,OUTPUT);
+}
  
 void setup(){
   Serial.begin(115200);
-  pinMode(highLumens,OUTPUT);
-  pinMode(mediumLumens,OUTPUT);
-  pinMode(lowLumens,OUTPUT);
+  setupRgb();
   pinMode(LIGHT,OUTPUT);
-}
- 
-void turnOffLeds() {
-  digitalWrite(highLumens,LOW);
-  digitalWrite(mediumLumens,LOW);
-  digitalWrite(lowLumens,LOW);
 }
 
 void processData() {
   lumens = analogRead(LDR_SENSOR);
-  turnOffLeds();
 
   if (lumens > highLimit) {
     status = 1;
-    digitalWrite(highLumens,HIGH);
+    rgb(0, 255, 0);
   }
    
   if (lumens >= mediumLimit && lumens <= highLimit) {
     status = 0;
-    digitalWrite(mediumLumens,HIGH);
+    rgb(255, 100, 0);
   }
  
   if (lumens < mediumLimit) {
     status = -1;
-    digitalWrite(lowLumens,HIGH);
+    rgb(255, 0, 0);
   }
 }
 
