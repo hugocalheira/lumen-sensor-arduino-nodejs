@@ -53,11 +53,26 @@ Execute o comando `npm install` ou `yarn install` para instalar as dependências
 
 > *Consulte a [documentação](https://www.arduino.cc/en/Guide) do Arduino para carregar o código presente na pasta */iot/unoR3/unoR3_sensor.cpp* ou */iot/esp32/esp32_sensor.cpp* em seu hardware, utilizando o **Arduino IDE** conforme o caso.
 
-## Para rodar
+## Executando através da porta serial
 
-Execute o comando `yarn start` + **PORTA** qual o protótipo está conectado.
+Plugue o hardware via USB e na pasta do projeto execute o comando `yarn start` + **PORTA** qual o protótipo está conectado, para inicializar a aplicação conectando pela porta serial.
 
 Ex: `yarn start COM3`
+
+## Configurando acesso à sua rede local (somente ESP32)
+
+Necessário criar o arquivo **.env** em `/`, informando o IP de conexão ao ESP32.
+
+Ex:
+```
+WS_IP=192.0.0.0
+```
+
+Na pasta **/iot/esp32_sensor**, edite o arquivo `conf.example`, inserindo os dados de acesso à sua rede local, salve como `conf.h` na mesma pasta e faça a compilação do `esp32_sensor.ino` para o seu ESP32*.
+
+## Para rodar com Wifi (somente ESP32)
+
+Plugue o hardware à uma fonte de energia e na pasta do projeto execute o comando `yarn start` para inicializar a aplicação conectando via WiFi e comunicação por websocket.
 
 ## To do
 - Conectar modelo ESP32 à rede local
