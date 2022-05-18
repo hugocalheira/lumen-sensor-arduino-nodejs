@@ -1,6 +1,6 @@
 require('dotenv').config()
-const { WS_IP, argv } = process.env
-const path = argv[2]
+const { WS_IP } = process.env
+const path = process.argv[2]
 
 const express = require('express')
 const app = express()
