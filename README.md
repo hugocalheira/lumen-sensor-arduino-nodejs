@@ -2,9 +2,11 @@
 
 Caso de estudo sobre integração de comunicação entre protótipos ESP32*, Arduino UNO R3 (ou hardware compatível) e NodeJs.
 
-![Protótipo utilizando LED RGB](https://i.imgur.com/BBvfBvv.png)
+![Protótipo com display LCD](https://i.imgur.com/lzu8OIT.png)
 
-O projeto apresenta um sensor de luminosidade, com resposta visual no hardware com três LEDS representativos da intensidade de luz ambiente, classificados como forte, média ou fraca. Em paralelo, os dados capturados pelo sensor é enviado via porta serial (USB) e lidos por um servidor web [Express](https://expressjs.com/pt-br/), ouvindo a porta 3000 e estabelecendo uma conexão *event-based* e de baixa latência com a *library* [Socket.io](https://socket.io/).
+O projeto apresenta um sensor de luminosidade, com resposta visual no hardware com um LED RGB representando a intensidade de luz ambiente, classificados como forte (verde), média (amarelo) ou fraca (vermelho). A variação do sensor de luminosidade também é apresentada em dados no display LCD. Em paralelo, os dados capturados pelo sensor é enviado via porta serial (USB) e lidos por um servidor web [Express](https://expressjs.com/pt-br/), ouvindo a porta 3000 e estabelecendo uma conexão *event-based* e de baixa latência com a *library* [Socket.io](https://socket.io/).
+
+![Protótipo utilizando LED RGB](https://i.imgur.com/BBvfBvv.png)
 
 Em resumo, podemos ler os dados de luminosidade através de qualquer aparelho na mesma rede, além de interagir dinamicamente como um interruptor ao enviar comando para o protótipo, interferir na luminosidade de forma artificial, acendendo um led branco junto ao sensor.
 
@@ -35,7 +37,10 @@ Em resumo, podemos ler os dados de luminosidade através de qualquer aparelho na
 - 4 Resistores 220 Ohms 5%
 - 1 Resistor 10 kOhms 5%
 - 8 jumpers (macho-macho)
+- 4 jumpers (fêmea-fêmea)
 - 1 protoboard
+- 1 display LCD 16x2
+- 1 Módulo Serial I2C
 
 ## Diagrama UNO R3
 
